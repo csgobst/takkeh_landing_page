@@ -5,7 +5,7 @@ import { useLanguage } from '../../context/LanguageContext';
 // We'll build the items dynamically based on current language
 
 // --- Accordion Item Component ---
-const AccordionItem = ({ item, isActive, onMouseEnter }) => {
+const AccordionItem = ({ item, isActive, onActivate }) => {
   const [justActivated, setJustActivated] = useState(false);
   const wasActiveRef = useRef(isActive);
 
@@ -30,9 +30,15 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
         relative rounded-2xl overflow-visible cursor-pointer
         transition-all duration-700 ease-in-out bg-gradient-to-br from-gray-100 to-gray-200
         hover:shadow-xl transform hover:-translate-y-1 flex flex-col
-        ${isActive ? 'w-[280px] h-[550px]' : 'w-[80px] h-[450px]'}
+        ${isActive ? 'w-[230px] sm:w-[260px] md:w-[280px] h-[430px] sm:h-[500px] md:h-[550px]' : 'w-[65px] sm:w-[70px] md:w-[80px] h-[360px] sm:h-[420px] md:h-[450px]'}
       `}
-      onMouseEnter={onMouseEnter}
+      onMouseEnter={onActivate}
+      onClick={onActivate}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onActivate(); } }}
+      aria-expanded={isActive}
+      aria-label={item.title}
     >
       {/* Background with Takkeh brand colors */}
       <div className="absolute inset-0 bg-gradient-to-br from-takkeh-yellow/20 via-orange-100/30 to-takkeh-yellow-light/20 rounded-2xl"></div>
@@ -145,29 +151,29 @@ export function TakkehAppSlider() {
       id: 1,
       title: t.screenHomeTitle,
       description: t.screenHomeDesc,
-      imageUrl: '/customerScreen/Home.svg',
+  imageUrl: process.env.PUBLIC_URL + '/customerScreen/Home.svg',
     },
     {
       id: 2,
       title: t.screenFavoritesTitle,
       description: t.screenFavoritesDesc,
-      imageUrl: '/customerScreen/Favorite.svg',
+  imageUrl: process.env.PUBLIC_URL + '/customerScreen/Favorite.svg',
     },
     {
       id: 3,
       title: t.screenTrackingTitle,
       description: t.screenTrackingDesc,
-      imageUrl: '/customerScreen/Requests.svg',
+  imageUrl: process.env.PUBLIC_URL + '/customerScreen/Requests.svg',
     },
   ];
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleItemHover = (index) => {
+  const handleActivate = (index) => {
     setActiveIndex(index);
   };
 
   return (
-    <div className={`w-full h-[550px] flex items-center justify-center overflow-hidden ${direction === 'rtl' ? 'rtl' : ''}`}>
+  <div className={`w-full h-[470px] sm:h-[520px] md:h-[550px] flex items-center justify-center overflow-visible ${direction === 'rtl' ? 'rtl' : ''}`}>
       {/* Keyframes injected once (harmless duplicates if multiple items) */}
       <style>{`
         @keyframes fallAndRise {
@@ -178,13 +184,13 @@ export function TakkehAppSlider() {
           100% { transform: rotate(0deg) translateY(-10px); opacity:0; }
         }
       `}</style>
-      <div className="flex flex-row items-start justify-center gap-4 p-4">
+      <div className="flex flex-row items-start justify-center gap-3 sm:gap-4 p-2 sm:p-4 touch-pan-y select-none">
         {accordionItems.map((item, index) => (
           <AccordionItem
             key={item.id}
             item={item}
             isActive={index === activeIndex}
-            onMouseEnter={() => handleItemHover(index)}
+            onActivate={() => handleActivate(index)}
           />
         ))}
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Smartphone, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { TakkehAppSlider } from './ui/interactive-image-accordion';
 
@@ -21,11 +21,11 @@ const DownloadButton = ({ href, platform, className = '' }) => {
     >
       <img
         src={isAppStore 
-          ? "/download-on-the-app-store-apple-logo-svgrepo-com.svg" 
-          : "/google-play-badge-logo-svgrepo-com.svg"
+          ? (process.env.PUBLIC_URL + '/download-on-the-app-store-apple-logo-svgrepo-com.svg') 
+          : (process.env.PUBLIC_URL + '/google-play-badge-logo-svgrepo-com.svg')
         }
         alt={isAppStore ? "Download on the App Store" : "Get it on Google Play"}
-        className="h-40 w-auto"
+        className="h-24 sm:h-28 md:h-32 lg:h-40 w-auto max-w-full"
       />
     </motion.a>
   );
@@ -79,7 +79,7 @@ const CustomerSection = () => {
   };
 
   return (
-    <section id="customer" className="relative min-h-screen pt-20 overflow-hidden">
+  <section id="customer" className="relative min-h-screen pt-24 sm:pt-28 overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 via-white to-orange-50"></div>
       
@@ -103,8 +103,8 @@ const CustomerSection = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className={`grid lg:grid-cols-2 gap-16 items-center ${isRTL ? 'lg:grid-cols-2' : ''}`}>
+      <div className="container mx-auto px-4 py-14 md:py-20 relative z-10 max-w-7xl">
+        <div className={`grid md:grid-cols-2 gap-10 lg:gap-16 items-center ${isRTL ? 'md:grid-cols-2' : ''}`}>
           
           {/* Content Section */}
           <motion.div
@@ -116,7 +116,7 @@ const CustomerSection = () => {
             {/* Hero Title */}
             <div>
               <motion.h1 
-                className="text-5xl md:text-7xl font-bold leading-tight"
+                className="text-3xl sm:text-4xl md:text-6xl xl:text-7xl font-bold leading-tight tracking-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -131,7 +131,7 @@ const CustomerSection = () => {
               </motion.h1>
               
               <motion.p 
-                className="text-xl md:text-2xl text-gray-600 mt-6 leading-relaxed"
+                className="text-base sm:text-lg md:text-2xl text-gray-600 mt-4 md:mt-6 leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -142,7 +142,7 @@ const CustomerSection = () => {
 
             {/* Benefits */}
             <motion.div 
-              className="space-y-4"
+              className="space-y-3 sm:space-y-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -158,7 +158,7 @@ const CustomerSection = () => {
 
             {/* Download Buttons */}
             <motion.div 
-              className={`flex flex-col sm:flex-row gap-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
+              className={`flex flex-col sm:flex-row gap-3 sm:gap-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -176,7 +176,7 @@ const CustomerSection = () => {
 
             {/* Secondary CTAs */}
             <motion.div 
-              className={`flex flex-col sm:flex-row gap-4 pt-8 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
+              className={`flex flex-col sm:flex-row gap-3 sm:gap-6 pt-6 md:pt-8 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
@@ -208,7 +208,7 @@ const CustomerSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="order-1 lg:order-2"
+            className="order-1 lg:order-2 w-full max-w-md mx-auto md:max-w-full"
           >
             <div className="relative">
               <TakkehAppSlider />
@@ -219,12 +219,12 @@ const CustomerSection = () => {
 
         {/* Availability Notice */}
         <motion.div
-          className="text-center mt-20"
+          className="text-center mt-14 md:mt-20 px-2"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
           transition={{ duration: 0.8, delay: 1.8 }}
         >
-          <p className="text-gray-600 text-lg bg-white/80 backdrop-blur-sm rounded-2xl py-4 px-8 inline-block shadow-md">
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg bg-white/80 backdrop-blur-sm rounded-2xl py-3 md:py-4 px-5 md:px-8 inline-block shadow-md max-w-md">
             {t.availability}
           </p>
         </motion.div>

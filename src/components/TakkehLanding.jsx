@@ -162,7 +162,7 @@ export default function TakkehLanding() {
               className="flex items-center space-x-3 rtl:space-x-reverse"
               whileHover={{ scale: 1.05 }}
             >
-              <img src="/logo-takkeh.svg" alt="Takkeh" className="w-10 h-10" />
+              <img src={process.env.PUBLIC_URL + '/logo-takkeh.svg'} alt="Takkeh" className="w-10 h-10" loading="lazy" width={40} height={40} />
               <span className="text-2xl font-bold text-takkeh-yellow">Takkeh</span>
             </motion.div>
 
@@ -449,7 +449,7 @@ export default function TakkehLanding() {
             {/* Left - Logo & Description */}
             <div className="text-center md:text-left rtl:md:text-right">
               <div className="flex items-center justify-center md:justify-start rtl:md:justify-end mb-4">
-                <img src="/logo-takkeh.svg" alt="Takkeh" className="w-10 h-10 mr-3 rtl:mr-0 rtl:ml-3" />
+                <img src={process.env.PUBLIC_URL + '/logo-takkeh.svg'} alt="Takkeh" className="w-10 h-10 mr-3 rtl:mr-0 rtl:ml-3" loading="lazy" width={40} height={40} />
                 <span className="text-2xl font-bold text-takkeh-yellow">Takkeh</span>
               </div>
               <p className="text-gray-400">{t.footerDescription}</p>

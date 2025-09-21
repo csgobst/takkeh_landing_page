@@ -6,7 +6,7 @@ A modern, animated bilingual (EN/AR) landing page for Takkeh's delivery platform
 
 - 🌟 **Modern UI/UX**: Beautiful gradient backgrounds, smooth animations, and 3D components
 - 🌍 **Bilingual Support**: Full English/Arabic support with RTL layout
-- 📱 **Responsive Design**: Optimized for all devices
+- 📱 **Responsive Design**: Optimized for all devices (phones, tablets, desktops, large screens)
 - 🎨 **3D Elements**: Interactive Three.js components in hero section
 - ⚡ **Smooth Animations**: Framer Motion powered animations
 - 🎯 **Smooth Scrolling**: In-page navigation with smooth scroll
@@ -90,6 +90,20 @@ src/
 - Contact information
 - Legal links (dummy)
 - Brand consistency
+
+## Responsive Design Notes
+
+The layout was enhanced for mobile & tablet:
+
+- Adaptive typography scales hero headings: `text-3xl -> text-7xl` across breakpoints
+- Grids collapse from 2 columns to single column below `md` breakpoint
+- Download buttons scale (height: 96px desktop down to 48px mobile) to avoid overflow
+- Accordion (customer app screens) is touch-enabled (click / keyboard) and shrinks width/height on small screens
+- Stats cards tighten spacing on mobile (`gap-3` vs `gap-4`)
+- Footer stacks columns vertically and reduces text size for narrow widths
+- Global container capped at `1280px` for better readability on ultra-wide monitors
+
+To tweak breakpoints, adjust Tailwind classes in the section components. Add custom breakpoints via `theme.extend.screens` in `tailwind.config.js` if needed.
 
 ## Customization
 

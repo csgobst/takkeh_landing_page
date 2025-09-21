@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Car, Navigation, DollarSign, Smartphone, Download, MapPin, Clock, Star } from 'lucide-react';
+import { Car, Navigation, DollarSign, MapPin, Clock, Star } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const DownloadButton = ({ href, platform, className = '' }) => {
@@ -20,11 +20,11 @@ const DownloadButton = ({ href, platform, className = '' }) => {
     >
       <img
         src={isAppStore 
-          ? "/download-on-the-app-store-apple-logo-svgrepo-com.svg" 
-          : "/google-play-badge-logo-svgrepo-com.svg"
+          ? (process.env.PUBLIC_URL + '/download-on-the-app-store-apple-logo-svgrepo-com.svg') 
+          : (process.env.PUBLIC_URL + '/google-play-badge-logo-svgrepo-com.svg')
         }
         alt={isAppStore ? "Download on the App Store" : "Get it on Google Play"}
-        className="h-40 w-auto"
+        className="h-24 sm:h-28 md:h-32 lg:h-40 w-auto max-w-full"
       />
     </motion.a>
   );
@@ -235,7 +235,7 @@ const DriverSection = () => {
   ];
 
   return (
-    <section id="driver" className="relative py-20 overflow-hidden">
+  <section id="driver" className="relative py-16 md:py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50"></div>
       
@@ -259,16 +259,16 @@ const DriverSection = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+  <div className="container mx-auto px-4 relative z-10 max-w-7xl">
         {/* Section Header */}
         <motion.div
-          className={`text-center mb-16 ${isRTL ? 'text-right' : 'text-left'} max-w-4xl mx-auto`}
+          className={`text-center mb-12 md:mb-16 ${isRTL ? 'text-right' : 'text-left'} max-w-4xl mx-auto px-2`}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -279,7 +279,7 @@ const DriverSection = () => {
           </motion.h2>
           
           <motion.p 
-            className="text-xl text-gray-600 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -288,14 +288,14 @@ const DriverSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className={`grid lg:grid-cols-2 gap-16 items-start ${isRTL ? 'lg:grid-cols-2' : ''}`}>
+  <div className={`grid md:grid-cols-2 gap-10 lg:gap-16 items-start ${isRTL ? 'md:grid-cols-2' : ''}`}>
           
           {/* App Preview */}
           <motion.div
             initial={{ opacity: 0, x: isRTL ? 100 : -100 }}
             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : (isRTL ? 100 : -100) }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="order-2 lg:order-1"
+            className="order-2 lg:order-1 max-w-sm md:max-w-full mx-auto"
           >
             <AppPreview delay={0.5} />
           </motion.div>
@@ -308,7 +308,7 @@ const DriverSection = () => {
             className="space-y-8 order-1 lg:order-2"
           >
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 md:mb-8">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -330,7 +330,7 @@ const DriverSection = () => {
             <EarningsCard delay={1.0} />
 
             {/* Feature Cards */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {features.map((feature, index) => (
                 <FeatureCard
                   key={index}
@@ -344,7 +344,7 @@ const DriverSection = () => {
 
             {/* Download Buttons */}
             <motion.div 
-              className={`flex flex-col sm:flex-row gap-4 pt-8 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
+              className={`flex flex-col sm:flex-row gap-3 sm:gap-4 pt-6 md:pt-8 ${isRTL ? 'sm:flex-row-reverse' : ''}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
               transition={{ duration: 0.8, delay: 1.6 }}

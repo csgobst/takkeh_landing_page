@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Header = () => {
@@ -51,9 +51,12 @@ const Header = () => {
           >
             <div className="w-12 h-12 bg-gradient-to-br from-takkeh-yellow to-takkeh-yellow-dark rounded-xl flex items-center justify-center shadow-lg">
               <img 
-                src="/logo-takkeh.svg" 
+                src={process.env.PUBLIC_URL + '/logo-takkeh.svg'} 
                 alt="Takkeh Logo" 
                 className="w-8 h-8"
+                loading="lazy"
+                width={32}
+                height={32}
               />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-takkeh-yellow to-takkeh-yellow-dark bg-clip-text text-transparent">

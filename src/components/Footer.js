@@ -20,11 +20,11 @@ const DownloadButton = ({ href, platform, className = '' }) => {
     >
       <img
         src={isAppStore 
-          ? "/download-on-the-app-store-apple-logo-svgrepo-com.svg" 
-          : "/google-play-badge-logo-svgrepo-com.svg"
+          ? (process.env.PUBLIC_URL + '/download-on-the-app-store-apple-logo-svgrepo-com.svg') 
+          : (process.env.PUBLIC_URL + '/google-play-badge-logo-svgrepo-com.svg')
         }
         alt={isAppStore ? "Download on the App Store" : "Get it on Google Play"}
-        className="h-20 w-auto"
+        className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto max-w-full"
       />
     </motion.a>
   );
@@ -36,7 +36,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+  <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/5 bg-grid-16 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
       
@@ -60,8 +60,8 @@ const Footer = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className={`grid md:grid-cols-3 gap-12 ${isRTL ? 'text-right' : 'text-left'}`}>
+      <div className="container mx-auto px-4 py-14 md:py-16 relative z-10 max-w-7xl">
+        <div className={`grid gap-10 md:gap-12 md:grid-cols-3 ${isRTL ? 'text-right' : 'text-left'}`}>        
           
           {/* Company Info */}
           <motion.div
@@ -75,9 +75,12 @@ const Footer = () => {
             <div className={`flex items-center space-x-3 ${isRTL ? 'space-x-reverse justify-end' : ''}`}>
               <div className="w-12 h-12 bg-gradient-to-br from-takkeh-yellow to-takkeh-yellow-dark rounded-xl flex items-center justify-center shadow-lg">
                 <img 
-                  src="/logo-takkeh.svg" 
+                  src={process.env.PUBLIC_URL + '/logo-takkeh.svg'} 
                   alt="Takkeh Logo" 
                   className="w-8 h-8"
+                  loading="lazy"
+                  width={32}
+                  height={32}
                 />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-takkeh-yellow to-orange-400 bg-clip-text text-transparent">
@@ -86,7 +89,7 @@ const Footer = () => {
             </div>
             
             {/* Description */}
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
               {t.footer.description}
             </p>
             
@@ -109,7 +112,7 @@ const Footer = () => {
               {t.footer.contact}
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-4 text-sm sm:text-base">
               {/* Email */}
               <div className={`flex items-center space-x-3 ${isRTL ? 'space-x-reverse' : ''}`}>
                 <div className="w-10 h-10 bg-takkeh-yellow/20 rounded-lg flex items-center justify-center">
@@ -151,7 +154,7 @@ const Footer = () => {
               Legal
             </h3>
             
-            <div className="space-y-3">
+            <div className="space-y-3 text-sm sm:text-base">
               <motion.a
                 href="#"
                 className="block text-gray-300 hover:text-takkeh-yellow transition-colors duration-200"
@@ -171,7 +174,7 @@ const Footer = () => {
 
             {/* App Download Links */}
             <div className="pt-6">
-              <h4 className="text-lg font-medium text-white mb-4">Download Customer App</h4>
+              <h4 className="text-base sm:text-lg font-medium text-white mb-3 sm:mb-4">Download Customer App</h4>
               <div className="space-y-3">
                 <div className="flex flex-col space-y-2">
                   <DownloadButton 
@@ -197,14 +200,14 @@ const Footer = () => {
           viewport={{ once: true }}
           className="border-t border-gray-700 pt-8 mt-12"
         >
-          <div className={`flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 ${
+          <div className={`flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0 ${
             isRTL ? 'md:flex-row-reverse' : ''
           }`}>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-xs sm:text-sm text-center">
               © {currentYear} Takkeh. All rights reserved.
             </p>
             
-            <div className="text-gray-400 text-sm">
+            <div className="text-gray-400 text-xs sm:text-sm text-center max-w-sm">
               {t.availability}
             </div>
           </div>
